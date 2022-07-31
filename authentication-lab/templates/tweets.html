@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<!DOCTYPE html>
+<html>
+<head>
+	<title>All Tweets</title>
+</head>
+<body>
+	{{likes}}
+	<button onclick=window.location.href="{{url_for('add_tweet')}}">
+    	BACK
+    </button>
+	{%for i in tweets%}
+		<div>
+			<p>at {{tweets[i]["time"]}},    {{users[tweets[i]["uid"]]["user_name"]}} wrote:</p>
+			<h5>{{tweets[i]["title"]}}</h5>
+			<p>{{tweets[i]["text"]}}</p>
+			<p>Likes: {{tweets[i]["likes"]}}</p>
+			
+			<form action="/like", method="POST">
+
+				<input type="text" value={{i}} name="tweet" hidden>
+				<button type="submit", >Like</button>
+			</form>
+
+			<hr>
+		</div>
+	{%endfor%}
+</body>
+</html>
